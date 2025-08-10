@@ -1,0 +1,41 @@
+name: Validate Pull Request
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['*.rb']
+
+jobs:
+  validate:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Tap this repository
+        run: |
+          brew tap metaneutrons/tap ${{ github.workspace }}
+
+      - name: Validate formulas
+        run: |
+          for formula in *.rb; do
+            formula_name=$(basename "$formula" .rb)
+            echo "Validating formula: $formula_name"
+            
+            # Audit formula
+            brew audit --strict "$formula_name"
+            
+            # Check formula syntax
+            brew info "$formula_name"
+          done
+
+      - name: Check formula style
+        run: |
+          # Check Ruby syntax
+          for formula in *.rb; do
+            ruby -c "$formula"
+          done
