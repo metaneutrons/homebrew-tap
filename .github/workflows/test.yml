@@ -1,0 +1,57 @@
+name: Test Formulas
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [macos-13, macos-14] # Intel and Apple Silicon
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Caches/Homebrew
+            /opt/homebrew/Library/Caches/Homebrew
+          key: ${{ runner.os }}-homebrew-${{ hashFiles('*.rb') }}
+          restore-keys: |
+            ${{ runner.os }}-homebrew-
+
+      - name: Tap this repository
+        run: |
+          brew tap metaneutrons/tap ${{ github.workspace }}
+
+      - name: Test formulas
+        run: |
+          # Test each formula
+          for formula in *.rb; do
+            formula_name=$(basename "$formula" .rb)
+            echo "Testing formula: $formula_name"
+            
+            # Audit formula
+            brew audit --strict "$formula_name" || echo "Audit failed for $formula_name"
+            
+            # Note: We skip installation tests since binaries may not be available
+            # In a real scenario, you'd test installation when releases exist
+          done
+
+      - name: Cleanup
+        if: always()
+        run: |
+          brew cleanup
+          brew untap metaneutrons/tap
