@@ -17,6 +17,21 @@ class Knxmonitor < Formula
 
   def install
     bin.install "KnxMonitor" => "knxmonitor"
+    
+    # Install man page if it exists in the archive
+    if File.exist?("docs/knxmonitor.1")
+      man1.install "docs/knxmonitor.1"
+    end
+    
+    # Install documentation
+    if File.exist?("README.md")
+      (share/"knxmonitor").install "README.md"
+    end
+    
+    # Install example CSV file if present
+    if File.exist?("knx-addresses.csv")
+      (share/"knxmonitor"/"examples").install "knx-addresses.csv"
+    end
   end
 
   test do
