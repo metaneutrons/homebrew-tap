@@ -7,11 +7,11 @@ class Knxmonitor < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/KnxMonitor/releases/download/v#{version}/KnxMonitor-#{version}-osx-x64.tar.gz"
-      sha256 "c7ce1d40ece10953148661ea4ccd19024e848a0bb4f47e584b750682cd914c43" # Will be updated when release is available
+      sha256 "5460d905597928330b280ef4cb11986f12c943d95cfd87b8ecd91151d1467287" # Will be updated when release is available
     end
     if Hardware::CPU.arm?
       url "https://github.com/metaneutrons/KnxMonitor/releases/download/v#{version}/KnxMonitor-#{version}-osx-arm64.tar.gz"
-      sha256 "575b5e374c094c7c36ab43ba17a1806cc5ab0cc74ece4a5c67574452524dba62" # Will be updated when release is available
+      sha256 "fe90c9a0494fbd8c33106efe0d4f87a39cbd17bebe766f62e605a4f137ff70f1" # Will be updated when release is available
     end
   end
 
