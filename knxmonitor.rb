@@ -1,17 +1,17 @@
 class Knxmonitor < Formula
   desc "Professional KNX/EIB bus monitoring and debugging tool"
   homepage "https://github.com/metaneutrons/KnxMonitor"
-  version "0.10.4"
+  version "0.10.5"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/KnxMonitor/releases/download/v#{version}/KnxMonitor-#{version}-osx-x64.tar.gz"
-      sha256 "7b600925a052d66d6b75eb90cb84e216945e6fd0902a4d643351fc19a19090fc" # Will be updated when release is available
+      sha256 "cc541224640dc2070e2db94b5def6e823a71c8866fb334e71c3090f10c2f03b5" # Will be updated when release is available
     end
     if Hardware::CPU.arm?
       url "https://github.com/metaneutrons/KnxMonitor/releases/download/v#{version}/KnxMonitor-#{version}-osx-arm64.tar.gz"
-      sha256 "67918604e4a4e8aef9a0ca20d0554eab50fee2cd54b798f2a7df1d6a4f3c533f" # Will be updated when release is available
+      sha256 "2abf7d85b3a796f72a535764ab1bf042ce2fd198c194b9704fd8e65d94e28d1d" # Will be updated when release is available
     end
   end
 
