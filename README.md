@@ -28,7 +28,7 @@ brew install metaneutrons/tap/knxmonitor
 ### png2lvgl
 
 **Description:** Convert PNG images to LVGL C arrays  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Homepage:** https://github.com/metaneutrons/png2lvgl  
 
 **Installation:**
