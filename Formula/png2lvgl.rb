@@ -7,10 +7,10 @@ class Png2lvgl < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.1.1/png2lvgl-0.1.1-x86_64-apple-darwin.tar.gz"
-      sha256 "1332e66fb12ef015e2f901dead92048096dba482c06cb192c1d9ffae1d87763a"
+      sha256 "b3ac5db80746c969e847355dbb9b3642bae4adb84b98c9c0e4529aac0d80f874"
     else
       url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.1.1/png2lvgl-0.1.1-aarch64-apple-darwin.tar.gz"
-      sha256 "e021fa92e02679f1f4e5e383928d39c9bd512b6e34e653ec8b4b89b89219df45"
+      sha256 "4494273873512f0a173d2099b93e5587ffcba87d31af4c6b4fdb85151529ee27"
     end
   end
 
