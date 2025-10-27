@@ -43,7 +43,7 @@ After installation, you can use any of the tools directly from your terminal.
 
 ## 🐛 Issues
 
-If you encounter any issues with these formulas, please report them in the respective project repositories or create an issue in this tap repository.
+If you encounter any issues with these formulas, please report them in the respective project repositories.
 
 ## 🤝 Contributing
 
