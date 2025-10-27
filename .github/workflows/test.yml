@@ -1,0 +1,85 @@
+name: Test Formulas
+
+on:
+  push:
+    branches: [main]
+    paths: ['Formula/*.rb']
+  pull_request:
+    branches: [main]
+    paths: ['Formula/*.rb']
+  workflow_dispatch:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [macos-latest, macos-15-intel] # Apple Silicon and Intel
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Get changed formulas
+        id: changed-formulas
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # For push events, compare with previous commit
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- Formula/*.rb || echo "")
+          else
+            # For PRs, compare with base branch
+            CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} HEAD -- Formula/*.rb || echo "")
+          fi
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No formula changes detected"
+            echo "formulas=" >> $GITHUB_OUTPUT
+          else
+            echo "Changed formulas: $CHANGED_FILES"
+            # Extract formula names without path and extension
+            FORMULAS=$(echo "$CHANGED_FILES" | sed 's|Formula/||g' | sed 's|\.rb||g' | tr '\n' ' ')
+            echo "formulas=$FORMULAS" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Test changed formulas
+        if: steps.changed-formulas.outputs.formulas != ''
+        run: |
+          # Create a temporary tap directory to avoid conflicts
+          TEMP_TAP_DIR=$(mktemp -d)
+          cp -r Formula "$TEMP_TAP_DIR/"
+          
+          # Tap from the temporary directory
+          brew tap metaneutrons/tap "$TEMP_TAP_DIR"
+          
+          # Test each changed formula
+          for formula_name in ${{ steps.changed-formulas.outputs.formulas }}; do
+            echo "Testing formula: $formula_name"
+            
+            # Audit formula
+            if brew audit --strict "metaneutrons/tap/$formula_name"; then
+              echo "✅ Audit passed for $formula_name"
+            else
+              echo "❌ Audit failed for $formula_name"
+              exit 1
+            fi
+            
+            # Check formula info
+            if brew info "metaneutrons/tap/$formula_name"; then
+              echo "✅ Formula info retrieved for $formula_name"
+            else
+              echo "❌ Formula info failed for $formula_name"
+              exit 1
+            fi
+          done
+
+      - name: Cleanup
+        if: always()
+        run: |
+          brew untap metaneutrons/tap || true
+          brew cleanup || true

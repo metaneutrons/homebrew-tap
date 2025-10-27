@@ -1,0 +1,127 @@
+name: Update README
+
+on:
+  push:
+    branches: [main]
+    paths: ['Formula/*.rb']
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    # Skip if commit message contains 'docs: auto-update README' to prevent loops
+    if: "!contains(github.event.head_commit.message, 'docs: auto-update README')"
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate README from formulas
+        run: |
+          # Start building the new README
+          cat > README.md << 'EOF'
+          # 🍺 Homebrew Tap - metaneutrons
+
+          Custom Homebrew formulas for metaneutrons projects.
+
+          ## 📦 Installation
+
+          First, tap this repository:
+
+          ```bash
+          brew tap metaneutrons/tap
+          ```
+
+          ## 🚀 Available Formulas
+
+          EOF
+
+          # Process each formula
+          for formula_file in Formula/*.rb; do
+            if [ -f "$formula_file" ]; then
+              formula_name=$(basename "$formula_file" .rb)
+              
+              # Extract information from formula file
+              desc=$(grep -o 'desc "[^"]*"' "$formula_file" | sed 's/desc "\(.*\)"/\1/' || echo "No description")
+              homepage=$(grep -o 'homepage "[^"]*"' "$formula_file" | sed 's/homepage "\(.*\)"/\1/' || echo "")
+              version=$(grep -o 'version "[^"]*"' "$formula_file" | sed 's/version "\(.*\)"/\1/' || echo "latest")
+              
+              # Add formula to README
+              cat >> README.md << EOF
+
+          ### $formula_name
+
+          **Description:** $desc  
+          **Version:** $version  
+          EOF
+              
+              if [ -n "$homepage" ]; then
+                echo "**Homepage:** $homepage  " >> README.md
+              fi
+              
+              cat >> README.md << EOF
+
+          **Installation:**
+          \`\`\`bash
+          brew install metaneutrons/tap/$formula_name
+          \`\`\`
+
+          EOF
+            fi
+          done
+
+          # Add footer
+          cat >> README.md << 'EOF'
+
+          ## 💻 Usage
+
+          After installation, you can use any of the tools directly from your terminal.
+
+          ## 🐛 Issues
+
+          If you encounter any issues with these formulas, please report them in the respective project repositories.
+
+          ## 🤝 Contributing
+
+          Formulas are automatically updated when new releases are published. Contributions to the formulas should be made to the respective project repositories.
+          EOF
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "docs: auto-update README with current formulas"
+          
+          # Push with retry logic
+          for i in {1..3}; do
+            if git push; then
+              echo "✅ Successfully pushed changes"
+              break
+            else
+              echo "⚠️ Push attempt $i failed, retrying..."
+              sleep 2
+            fi
+          done
+        
+      - name: Summary
+        run: |
+          if [ "${{ steps.changes.outputs.changed }}" = "true" ]; then
+            echo "✅ README.md updated with current formulas"
+          else
+            echo "ℹ️ README.md is already up to date"
+          fi
