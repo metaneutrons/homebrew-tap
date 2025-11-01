@@ -1,16 +1,16 @@
 class Png2lvgl < Formula
   desc "Convert PNG images to LVGL C arrays"
   homepage "https://github.com/metaneutrons/png2lvgl"
-  version "0.2.2"
+  version "0.2.3"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.2.2/png2lvgl-0.2.2-x86_64-apple-darwin.tar.gz"
-      sha256 "a93e3bb6b0881ef944e03ba876860193dd289252f0bde937badcfb9bc41e47a5"
+      url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.2.3/png2lvgl-0.2.3-x86_64-apple-darwin.tar.gz"
+      sha256 "41786f9bd1a7ba285b24e685be99fd1f7893dbcc3b97444c365e4183dff5b8a9"
     else
-      url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.2.2/png2lvgl-0.2.2-aarch64-apple-darwin.tar.gz"
-      sha256 "eadeecb3ac2156d541ede8616f4d6ae93f40263dc4f01acc84799210f949792c"
+      url "https://github.com/metaneutrons/png2lvgl/releases/download/v0.2.3/png2lvgl-0.2.3-aarch64-apple-darwin.tar.gz"
+      sha256 "45819fdfa752153123a61f7fcf715ce05b3f9443199798bf4822ac6d81168c65"
     end
   end
 
