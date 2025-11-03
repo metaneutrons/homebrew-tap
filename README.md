@@ -16,7 +16,7 @@ brew tap metaneutrons/tap
 ### knxmonitor
 
 **Description:** KNX/EIB bus monitoring and debugging tool  
-**Version:** 0.10.12  
+**Version:** 0.10.13  
 **Homepage:** https://github.com/metaneutrons/KnxMonitor  
 
 **Installation:**
