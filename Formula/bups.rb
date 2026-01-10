@@ -7,10 +7,10 @@ class Bups < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/bups/releases/download/v0.1.0/bups-0.1.0-x86_64-apple-darwin.tar.gz"
-      sha256 "be0d0812595b3c1be565b4838fbbf94ec9e3724852d67ac8d75361f845b1d32b"
+      sha256 "b8a5dddee1e4d5eda0d4d161d489759b75f81a7c263315df4d9fb41ec6a62cb1"
     else
       url "https://github.com/metaneutrons/bups/releases/download/v0.1.0/bups-0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "4e49de532a8f84cf68bc5a0d83f045ef9f3b5d4881755bebcd3278bab967ecdf"
+      sha256 "e191c49fec86429cc12a24c023eb25eb44667a288accf132c8d6cd98573fed29"
     end
   end
 
