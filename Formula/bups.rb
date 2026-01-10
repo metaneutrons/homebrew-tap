@@ -1,16 +1,16 @@
 class Bups < Formula
   desc "USB print server for label printers"
   homepage "https://github.com/metaneutrons/bups"
-  version "0.1.0"
+  version "0.1.1"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/bups/releases/download/v0.1.0/bups-0.1.0-x86_64-apple-darwin.tar.gz"
-      sha256 "9e3d54118334e1e8a4de064bac5731286647036d0213f18e04ff355cd211a775"
+      url "https://github.com/metaneutrons/bups/releases/download/v0.1.1/bups-0.1.1-x86_64-apple-darwin.tar.gz"
+      sha256 "27ceb89948c115cffd10f632491f9247b7012d97c9682c4961494e4266661b80"
     else
-      url "https://github.com/metaneutrons/bups/releases/download/v0.1.0/bups-0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "4a437669c86b99ea4c09017ea0a90c8979264ae7e438f9a2998b3d16891d0895"
+      url "https://github.com/metaneutrons/bups/releases/download/v0.1.1/bups-0.1.1-aarch64-apple-darwin.tar.gz"
+      sha256 "ced72072f1433609670fa85951e4e0ea706bf0798615eadb1ecac06d7065fa25"
     end
   end
 
