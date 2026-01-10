@@ -16,7 +16,7 @@ brew tap metaneutrons/tap
 ### bups
 
 **Description:** USB print server for label printers  
-**Version:** 0.1.0  
+**Version:** 0.1.1  
 **Homepage:** https://github.com/metaneutrons/bups  
 
 **Installation:**
