@@ -49,6 +49,18 @@ brew install metaneutrons/tap/png2lvgl
 ```
 
 
+### ugos-cli
+
+**Description:** CLI and MCP server for UGREEN NAS (UGOS) management  
+**Version:** 0.2.0  
+**Homepage:** https://github.com/metaneutrons/ugos-cli  
+
+**Installation:**
+```bash
+brew install metaneutrons/tap/ugos-cli
+```
+
+
 ## 💻 Usage
 
 After installation, you can use any of the tools directly from your terminal.
