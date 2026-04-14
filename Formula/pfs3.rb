@@ -7,10 +7,10 @@ class Pfs3 < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.0/pfs3-0.1.0-x86_64-apple-darwin.tar.gz"
-      sha256 "fbea88d3ce506ced1e6ef04b4b526d545ad1154a80e69a8b26a0d7dff26548e0"
+      sha256 "6ca78d668403b302ecc949c0b64a3980b7a98be63894f8c400d55fa9424bd3bf"
     else
       url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.0/pfs3-0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "d4083960ea1908e6723c55cc275271bcf04bd9e48b06853447655a35d5b0fc70"
+      sha256 "f55f2286989c3e895ee5ba027576f4faa77ce2d6dc99e91ed7aa8114c00ac490"
     end
   end
 
