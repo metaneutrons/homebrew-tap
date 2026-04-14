@@ -37,6 +37,18 @@ brew install metaneutrons/tap/knxmonitor
 ```
 
 
+### pfs3
+
+**Description:** PFS3 (Amiga Professional File System III) tools  
+**Version:** 0.1.0  
+**Homepage:** https://github.com/metaneutrons/pfs3  
+
+**Installation:**
+```bash
+brew install metaneutrons/tap/pfs3
+```
+
+
 ### png2lvgl
 
 **Description:** Convert PNG images to LVGL C arrays  
