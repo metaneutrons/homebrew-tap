@@ -52,7 +52,7 @@ brew install metaneutrons/tap/pfs3
 ### png2lvgl
 
 **Description:** Convert PNG images to LVGL C arrays  
-**Version:** 0.3.1  
+**Version:** 0.3.4  
 **Homepage:** https://github.com/metaneutrons/png2lvgl  
 
 **Installation:**
