@@ -13,6 +13,18 @@ brew tap metaneutrons/tap
 ## 🚀 Available Formulas
 
 
+### amiga-gcc
+
+**Description:** GNU C/C++ cross-compiler toolchain for Amiga (m68k-amigaos)  
+**Version:** 2025.07.13  
+**Homepage:** https://franke.ms/git/bebbo/amiga-gcc  
+
+**Installation:**
+```bash
+brew install metaneutrons/tap/amiga-gcc
+```
+
+
 ### bups
 
 **Description:** USB print server for label printers  
