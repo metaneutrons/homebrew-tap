@@ -76,7 +76,7 @@ brew install metaneutrons/tap/png2lvgl
 ### snapdog-client
 
 **Description:** SnapDog multiroom audio client  
-**Version:** 0.11.2  
+**Version:** 0.11.3  
 **Homepage:** https://github.com/metaneutrons/snapdog  
 
 **Installation:**
@@ -88,7 +88,7 @@ brew install metaneutrons/tap/snapdog-client
 ### snapdog
 
 **Description:** Multi-zone audio controller with AirPlay, Snapcast, MQTT, and KNX  
-**Version:** 0.11.2  
+**Version:** 0.11.3  
 **Homepage:** https://github.com/metaneutrons/snapdog  
 
 **Installation:**
