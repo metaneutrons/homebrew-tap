@@ -1,16 +1,16 @@
 class Snapdog < Formula
   desc "Multi-zone audio controller with AirPlay, Snapcast, MQTT, and KNX"
   homepage "https://github.com/metaneutrons/snapdog"
-  version "0.9.3"
+  version "0.11.2"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/snapdog/releases/download/v0.9.3/snapdog-v0.9.3-x86_64-apple-darwin.tar.gz"
-      sha256 "e8fba3907fbacc473a7105226553fc784e03ba85a09b828b14a2b09fd83c4f98"
+      url "https://github.com/metaneutrons/snapdog/releases/download/v0.11.2/snapdog-v0.11.2-x86_64-apple-darwin.tar.gz"
+      sha256 "616e680a9070e0e530670cedbb0ed33a175348769c9b81c519417869c2606ca8"
     else
-      url "https://github.com/metaneutrons/snapdog/releases/download/v0.9.3/snapdog-v0.9.3-aarch64-apple-darwin.tar.gz"
-      sha256 "cdc2f228b157acc5724c42050b91f3262466cf4a9d5073e2e219d97500a31c8f"
+      url "https://github.com/metaneutrons/snapdog/releases/download/v0.11.2/snapdog-v0.11.2-aarch64-apple-darwin.tar.gz"
+      sha256 "7e5b24f68e57d49f5ab821fa8cb8ca93a146a6e4b2a2e7c407ef67247bd77932"
     end
   end
 
