@@ -1,16 +1,16 @@
 class SnapdogClient < Formula
   desc "SnapDog multiroom audio client"
   homepage "https://github.com/metaneutrons/snapdog"
-  version "0.16.0"
+  version "0.16.1"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/snapdog/releases/download/v0.16.0/snapdog-v0.16.0-x86_64-apple-darwin.tar.gz"
-      sha256 "c653a2a7ff4de934f14864547b7898deae6f71ad360f96c506075acbb5b626b8"
+      url "https://github.com/metaneutrons/snapdog/releases/download/v0.16.1/snapdog-v0.16.1-x86_64-apple-darwin.tar.gz"
+      sha256 "1f3309501abadeb32373da3ecbae2e7ee0e6342379096563b5289e4b69e5e03f"
     else
-      url "https://github.com/metaneutrons/snapdog/releases/download/v0.16.0/snapdog-v0.16.0-aarch64-apple-darwin.tar.gz"
-      sha256 "376042e561d371c14450079988dcf2188485e99c83d086e2672c2888e4b5536e"
+      url "https://github.com/metaneutrons/snapdog/releases/download/v0.16.1/snapdog-v0.16.1-aarch64-apple-darwin.tar.gz"
+      sha256 "e704b83bf908d43f3c43329a4e12d230add6298918c27f9b4de63c030364522c"
     end
   end
 
