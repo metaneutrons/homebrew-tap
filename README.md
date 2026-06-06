@@ -73,30 +73,6 @@ brew install metaneutrons/tap/png2lvgl
 ```
 
 
-### snapdog-client
-
-**Description:** SnapDog multiroom audio client  
-**Version:** 0.16.1  
-**Homepage:** https://github.com/metaneutrons/snapdog  
-
-**Installation:**
-```bash
-brew install metaneutrons/tap/snapdog-client
-```
-
-
-### snapdog
-
-**Description:** Multi-zone audio controller with AirPlay, Snapcast, MQTT, and KNX  
-**Version:** 0.16.1  
-**Homepage:** https://github.com/metaneutrons/snapdog  
-
-**Installation:**
-```bash
-brew install metaneutrons/tap/snapdog
-```
-
-
 ### ugos-cli
 
 **Description:** CLI and MCP server for UGREEN NAS (UGOS) management  
