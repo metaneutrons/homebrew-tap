@@ -73,6 +73,18 @@ brew install metaneutrons/tap/png2lvgl
 ```
 
 
+### ruscore
+
+**Description:** Scrape MuseScore sheet music and convert to high-quality vector PDF  
+**Version:** 1.5.0  
+**Homepage:** https://github.com/metaneutrons/ruscore  
+
+**Installation:**
+```bash
+brew install metaneutrons/tap/ruscore
+```
+
+
 ### ugos-cli
 
 **Description:** CLI and MCP server for UGREEN NAS (UGOS) management  
