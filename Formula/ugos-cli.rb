@@ -1,26 +1,26 @@
 class UgosCli < Formula
   desc "CLI and MCP server for UGREEN NAS (UGOS) management"
   homepage "https://github.com/metaneutrons/ugos-cli"
-  version "0.3.2"
+  version "0.3.3"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.2/ugos-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "c23e03f04a0a1cf5a948c81d2ada5d3ad89407208131151b2b49d0f98346057a"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.3/ugos-cli-x86_64-apple-darwin.tar.gz"
+      sha256 "5030a527a7bdf4dee708bc4eb61826c258b06018dc167cdf521b3e0db01e06aa"
     else
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.2/ugos-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "de168fe3e40b5bd71834f6c239a786e059b77654292a44c58711dcb2fab45334"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.3/ugos-cli-aarch64-apple-darwin.tar.gz"
+      sha256 "33d92debc9e0fa0531743abcda3cbab8387f75e124270fa4614ba4844238413a"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.2/ugos-cli-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "5fbc69058800be180628981c8bdb93b058ba0fd26f5e34f61053db5009732e7c"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.3/ugos-cli-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "9dfe1a46e501d23fb87715ba0e37921d7e199b64f4282c99898cd9b1b27d3d5b"
     else
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.2/ugos-cli-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "f23baf640a23af27640159aab6de0f933313c70cd4777511b9d133ca8ee82429"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.3.3/ugos-cli-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "426029fff95b6ad3e9f0206fc784e8dcd1aa580cbffebdccd273bb6620d377ff"
     end
   end
 
