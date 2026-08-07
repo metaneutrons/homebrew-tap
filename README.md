@@ -88,7 +88,7 @@ brew install metaneutrons/tap/ruscore
 ### ugos-cli
 
 **Description:** CLI and MCP server for UGREEN NAS (UGOS) management  
-**Version:** 0.3.0  
+**Version:** 0.3.1  
 **Homepage:** https://github.com/metaneutrons/ugos-cli  
 
 **Installation:**
