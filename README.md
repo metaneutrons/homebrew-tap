@@ -40,7 +40,7 @@ brew install metaneutrons/tap/bups
 ### devserial
 
 **Description:** MCP server bridging serial hardware to LLMs  
-**Version:** 0.1.3  
+**Version:** 0.1.4  
 **Homepage:** https://github.com/metaneutrons/devserial-mcp  
 
 **Installation:**
