@@ -1,16 +1,16 @@
 class Devserial < Formula
   desc "MCP server bridging serial hardware to LLMs"
   homepage "https://github.com/metaneutrons/devserial-mcp"
-  version "0.1.3"
+  version "0.1.4"
   license "GPL-3.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.3/devserial-0.1.3-x86_64-apple-darwin.tar.gz"
-      sha256 "5fe4cdadabf09529594a11fb857ed70231fbce29c60bd3441267633b8e1ce8f0"
+      url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.4/devserial-0.1.4-x86_64-apple-darwin.tar.gz"
+      sha256 "bd086c6974b27d94bf8f74d4d1d471220393db1b0dcfb8417e69eaccbbfbf31d"
     else
-      url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.3/devserial-0.1.3-aarch64-apple-darwin.tar.gz"
-      sha256 "9cdbc013fcdddf6fa5a07800bd949ce082ea11a889a9f0da0f1e764f38f3bc64"
+      url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.4/devserial-0.1.4-aarch64-apple-darwin.tar.gz"
+      sha256 "f84b6d9e7257d2f7a03a4e28bd3a9a185958926f608edba9836d35935ac2e5a9"
     end
   end
 
