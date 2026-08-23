@@ -7,10 +7,10 @@ class Devserial < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.3/devserial-0.1.3-x86_64-apple-darwin.tar.gz"
-      sha256 "dd2b728a25834ccc4f965006ba351570dfb722e246efe687b38f39347282febd"
+      sha256 "5fe4cdadabf09529594a11fb857ed70231fbce29c60bd3441267633b8e1ce8f0"
     else
       url "https://github.com/metaneutrons/devserial-mcp/releases/download/devserial-v0.1.3/devserial-0.1.3-aarch64-apple-darwin.tar.gz"
-      sha256 "1f166249f48bc7fb87ced4516cef5b232abca35d579431d9f25398f8719aebba"
+      sha256 "9cdbc013fcdddf6fa5a07800bd949ce082ea11a889a9f0da0f1e764f38f3bc64"
     end
   end
 
