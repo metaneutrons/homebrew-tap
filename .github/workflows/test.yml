@@ -1,85 +1,191 @@
-name: Test Formulas
+name: Qualify formulas
 
 on:
-  push:
-    branches: [main]
-    paths: ['Formula/*.rb']
   pull_request:
     branches: [main]
-    paths: ['Formula/*.rb']
+  push:
+    branches: [main]
+    paths:
+      - 'Formula/*.rb'
+      - '.github/workflows/test.yml'
+      - 'scripts/generate-readme.sh'
+      - 'README.md'
   workflow_dispatch:
-  workflow_dispatch:
+    inputs:
+      formula:
+        description: Formula name to qualify; blank selects every formula
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formula-qualification-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [macos-latest, macos-15-intel] # Apple Silicon and Intel
-    runs-on: ${{ matrix.os }}
-    
+  discover:
+    name: Discover changed formulas
+    runs-on: ubuntu-24.04
+    outputs:
+      formulas: ${{ steps.formulas.outputs.formulas }}
+      aros_tools: ${{ steps.formulas.outputs.aros_tools }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
-          fetch-depth: 2
-
-      - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-
-      - name: Get changed formulas
-        id: changed-formulas
+          fetch-depth: 0
+      - name: Resolve the closed formula set
+        id: formulas
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_BEFORE: ${{ github.event.before }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          DISPATCH_FORMULA: ${{ inputs.formula }}
         run: |
-          if [ "${{ github.event_name }}" = "push" ]; then
-            # For push events, compare with previous commit
-            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD -- Formula/*.rb || echo "")
-          else
-            # For PRs, compare with base branch
-            CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }} HEAD -- Formula/*.rb || echo "")
-          fi
-          
-          if [ -z "$CHANGED_FILES" ]; then
-            echo "No formula changes detected"
-            echo "formulas=" >> $GITHUB_OUTPUT
-          else
-            echo "Changed formulas: $CHANGED_FILES"
-            # Extract formula names without path and extension
-            FORMULAS=$(echo "$CHANGED_FILES" | sed 's|Formula/||g' | sed 's|\.rb||g' | tr '\n' ' ')
-            echo "formulas=$FORMULAS" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Test changed formulas
-        if: steps.changed-formulas.outputs.formulas != ''
-        run: |
-          # Create a temporary tap directory to avoid conflicts
-          TEMP_TAP_DIR=$(mktemp -d)
-          cp -r Formula "$TEMP_TAP_DIR/"
-          
-          # Tap from the temporary directory
-          brew tap metaneutrons/tap "$TEMP_TAP_DIR"
-          
-          # Test each changed formula
-          for formula_name in ${{ steps.changed-formulas.outputs.formulas }}; do
-            echo "Testing formula: $formula_name"
-            
-            # Audit formula
-            if brew audit --strict "metaneutrons/tap/$formula_name"; then
-              echo "✅ Audit passed for $formula_name"
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == workflow_dispatch ]]; then
+            if [[ -n "$DISPATCH_FORMULA" ]]; then
+              if [[ ! "$DISPATCH_FORMULA" =~ ^[a-z0-9][a-z0-9@+._-]*$ ]]; then
+                echo "::error::invalid formula name"
+                exit 1
+              fi
+              changed="Formula/${DISPATCH_FORMULA}.rb"
+              if [[ ! -f "$changed" ]]; then
+                echo "::error::formula does not exist: $DISPATCH_FORMULA"
+                exit 1
+              fi
             else
-              echo "❌ Audit failed for $formula_name"
-              exit 1
+              changed=$(find Formula -maxdepth 1 -type f -name '*.rb' -print | sort)
             fi
-            
-            # Check formula info
-            if brew info "metaneutrons/tap/$formula_name"; then
-              echo "✅ Formula info retrieved for $formula_name"
-            else
-              echo "❌ Formula info failed for $formula_name"
+          else
+            base=$EVENT_BEFORE
+            if [[ "$EVENT_NAME" == pull_request ]]; then
+              base=$PR_BASE_SHA
+            elif [[ -z "$base" || "$base" =~ ^0+$ ]]; then
+              base=$(git rev-list --max-parents=0 HEAD)
+            fi
+            changed=$(git diff --name-only --diff-filter=ACMR "$base" HEAD -- 'Formula/*.rb')
+          fi
+          formulas=$(printf '%s\n' "$changed" | sed -n 's#^Formula/\(.*\)\.rb$#\1#p' | sort -u)
+          formulas_json=$(printf '%s\n' "$formulas" | jq -Rsc \
+            'split("\n") | map(select(length > 0))')
+          aros_tools=false
+          if printf '%s\n' "$formulas" | grep -Fxq aros-tools; then
+            aros_tools=true
+          fi
+          {
+            echo "formulas=$formulas_json"
+            echo "aros_tools=$aros_tools"
+          } >> "$GITHUB_OUTPUT"
+          printf 'Changed formulas: %s\n' "$formulas_json"
+
+  macos:
+    name: ${{ matrix.formula }} on ${{ matrix.runner }}
+    if: needs.discover.outputs.formulas != '[]'
+    needs: discover
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        formula: ${{ fromJSON(needs.discover.outputs.formulas) }}
+        runner: [macos-15, macos-15-intel]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@3cdb78d0f62ad29dd32de765782654f4eedea607
+        with:
+          core: false
+          cask: false
+      - name: Audit, install and test
+        env:
+          FORMULA: ${{ matrix.formula }}
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+        run: |
+          set -euo pipefail
+          brew audit --strict "metaneutrons/tap/$FORMULA"
+          brew install "metaneutrons/tap/$FORMULA"
+          brew test "metaneutrons/tap/$FORMULA"
+      - name: Remove qualification install
+        if: always()
+        env:
+          FORMULA: ${{ matrix.formula }}
+        run: brew uninstall "$FORMULA" >/dev/null 2>&1 || true
+
+  aros-tools-linux:
+    name: aros-tools on ${{ matrix.runner }}
+    if: needs.discover.outputs.aros_tools == 'true'
+    needs: discover
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@3cdb78d0f62ad29dd32de765782654f4eedea607
+        with:
+          core: false
+          cask: false
+      - name: Audit, install and test
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+        run: |
+          set -euo pipefail
+          brew audit --strict metaneutrons/tap/aros-tools
+          brew install metaneutrons/tap/aros-tools
+          brew test metaneutrons/tap/aros-tools
+      - name: Remove qualification install
+        if: always()
+        run: brew uninstall aros-tools >/dev/null 2>&1 || true
+
+  readme:
+    name: README matches formulas
+    needs: discover
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Verify deterministic formula documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=$(mktemp)
+          trap 'rm -f "$expected"' EXIT
+          scripts/generate-readme.sh "$expected"
+          if ! diff -u README.md "$expected"; then
+            echo "::error::README.md is stale; run scripts/generate-readme.sh"
+            exit 1
+          fi
+
+  gate:
+    name: Formula qualification
+    if: always()
+    needs: [discover, macos, aros-tools-linux, readme]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Enforce every applicable lane
+        env:
+          DISCOVER_RESULT: ${{ needs.discover.result }}
+          MACOS_RESULT: ${{ needs.macos.result }}
+          LINUX_RESULT: ${{ needs.aros-tools-linux.result }}
+          README_RESULT: ${{ needs.readme.result }}
+        run: |
+          set -euo pipefail
+          if [[ "$DISCOVER_RESULT" != success ]]; then
+            echo "::error::formula discovery ended with $DISCOVER_RESULT"
+            exit 1
+          fi
+          if [[ "$README_RESULT" != success ]]; then
+            echo "::error::README verification ended with $README_RESULT"
+            exit 1
+          fi
+          for result in "$MACOS_RESULT" "$LINUX_RESULT"; do
+            if [[ "$result" != success && "$result" != skipped ]]; then
+              echo "::error::formula qualification lane ended with $result"
               exit 1
             fi
           done
-
-      - name: Cleanup
-        if: always()
-        run: |
-          brew untap metaneutrons/tap || true
-          brew cleanup || true

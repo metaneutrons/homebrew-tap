@@ -12,102 +12,117 @@ brew tap metaneutrons/tap
 
 ## 🚀 Available Formulas
 
-
 ### amiga-gcc
 
-**Description:** GNU C/C++ cross-compiler toolchain for Amiga (m68k-amigaos)  
-**Version:** 2025.07.13  
-**Homepage:** https://franke.ms/git/bebbo/amiga-gcc  
+**Description:** GNU C/C++ cross-compiler toolchain for Amiga (m68k-amigaos)
+
+**Version:** 2025.07.13
+
+**Homepage:** https://franke.ms/git/bebbo/amiga-gcc
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/amiga-gcc
 ```
 
-
 ### bups
 
-**Description:** USB print server for label printers  
-**Version:** 0.1.1  
-**Homepage:** https://github.com/metaneutrons/bups  
+**Description:** USB print server for label printers
+
+**Version:** 0.1.1
+
+**Homepage:** https://github.com/metaneutrons/bups
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/bups
 ```
 
-
 ### devserial
 
-**Description:** MCP server bridging serial hardware to LLMs  
-**Version:** 0.1.4  
-**Homepage:** https://github.com/metaneutrons/devserial-mcp  
+**Description:** MCP server bridging serial hardware to LLMs
+
+**Version:** 0.1.4
+
+**Homepage:** https://github.com/metaneutrons/devserial-mcp
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/devserial
 ```
 
-
 ### knxmonitor
 
-**Description:** KNX/EIB bus monitoring and debugging tool  
-**Version:** 0.10.14  
-**Homepage:** https://github.com/metaneutrons/KnxMonitor  
+**Description:** KNX/EIB bus monitoring and debugging tool
+
+**Version:** 0.10.14
+
+**Homepage:** https://github.com/metaneutrons/KnxMonitor
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/knxmonitor
 ```
 
-
 ### pfs3
 
-**Description:** PFS3 (Amiga Professional File System III) tools  
-**Version:** 0.1.3  
-**Homepage:** https://github.com/metaneutrons/pfs3  
+**Description:** PFS3 (Amiga Professional File System III) tools
+
+**Version:** 0.1.3
+
+**Homepage:** https://github.com/metaneutrons/pfs3
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/pfs3
 ```
 
-
 ### png2lvgl
 
-**Description:** Convert PNG images to LVGL C arrays  
-**Version:** 0.3.5  
-**Homepage:** https://github.com/metaneutrons/png2lvgl  
+**Description:** Convert PNG images to LVGL C arrays
+
+**Version:** 0.3.5
+
+**Homepage:** https://github.com/metaneutrons/png2lvgl
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/png2lvgl
 ```
 
-
 ### ruscore
 
-**Description:** Scrape MuseScore sheet music and convert to high-quality vector PDF  
-**Version:** 1.5.0  
-**Homepage:** https://github.com/metaneutrons/ruscore  
+**Description:** Scrape MuseScore sheet music and convert to high-quality vector PDF
+
+**Version:** 1.5.0
+
+**Homepage:** https://github.com/metaneutrons/ruscore
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/ruscore
 ```
 
-
 ### ugos-cli
 
-**Description:** CLI and MCP server for UGREEN NAS (UGOS) management  
-**Version:** 0.10.1  
-**Homepage:** https://github.com/metaneutrons/ugos-cli  
+**Description:** CLI and MCP server for UGREEN NAS (UGOS) management
+
+**Version:** 0.10.1
+
+**Homepage:** https://github.com/metaneutrons/ugos-cli
 
 **Installation:**
+
 ```bash
 brew install metaneutrons/tap/ugos-cli
 ```
-
 
 ## 💻 Usage
 
@@ -119,4 +134,4 @@ If you encounter any issues with these formulas, please report them in the respe
 
 ## 🤝 Contributing
 
-Formulas are automatically updated when new releases are published. Contributions to the formulas should be made to the respective project repositories.
+Formula changes and the generated README must be submitted together in one pull request. Run `scripts/generate-readme.sh` after changing a formula.
