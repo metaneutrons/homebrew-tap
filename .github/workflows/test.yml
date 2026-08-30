@@ -143,3 +143,27 @@ jobs:
       - name: Remove qualification install
         if: always()
         run: brew uninstall aros-tools >/dev/null 2>&1 || true
+
+  gate:
+    name: Formula qualification
+    if: always()
+    needs: [discover, macos, aros-tools-linux]
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Enforce every applicable lane
+        env:
+          DISCOVER_RESULT: ${{ needs.discover.result }}
+          MACOS_RESULT: ${{ needs.macos.result }}
+          LINUX_RESULT: ${{ needs.aros-tools-linux.result }}
+        run: |
+          set -euo pipefail
+          if [[ "$DISCOVER_RESULT" != success ]]; then
+            echo "::error::formula discovery ended with $DISCOVER_RESULT"
+            exit 1
+          fi
+          for result in "$MACOS_RESULT" "$LINUX_RESULT"; do
+            if [[ "$result" != success && "$result" != skipped ]]; then
+              echo "::error::formula qualification lane ended with $result"
+              exit 1
+            fi
+          done
