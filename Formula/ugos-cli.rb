@@ -1,8 +1,7 @@
 class UgosCli < Formula
   desc "CLI and MCP server for UGREEN NAS (UGOS) management"
   homepage "https://github.com/metaneutrons/ugos-cli"
-  version "0.10.1"
-  license "GPL-3.0"
+  license "GPL-3.0-or-later"
 
   on_macos do
     if Hardware::CPU.intel?
