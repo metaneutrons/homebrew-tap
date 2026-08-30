@@ -3,14 +3,13 @@ name: Qualify formulas
 on:
   pull_request:
     branches: [main]
-    paths:
-      - 'Formula/*.rb'
-      - '.github/workflows/test.yml'
   push:
     branches: [main]
     paths:
       - 'Formula/*.rb'
       - '.github/workflows/test.yml'
+      - 'scripts/generate-readme.sh'
+      - 'README.md'
   workflow_dispatch:
     inputs:
       formula:
@@ -144,10 +143,28 @@ jobs:
         if: always()
         run: brew uninstall aros-tools >/dev/null 2>&1 || true
 
+  readme:
+    name: README matches formulas
+    needs: discover
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Verify deterministic formula documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected=$(mktemp)
+          trap 'rm -f "$expected"' EXIT
+          scripts/generate-readme.sh "$expected"
+          if ! diff -u README.md "$expected"; then
+            echo "::error::README.md is stale; run scripts/generate-readme.sh"
+            exit 1
+          fi
+
   gate:
     name: Formula qualification
     if: always()
-    needs: [discover, macos, aros-tools-linux]
+    needs: [discover, macos, aros-tools-linux, readme]
     runs-on: ubuntu-24.04
     steps:
       - name: Enforce every applicable lane
@@ -155,10 +172,15 @@ jobs:
           DISCOVER_RESULT: ${{ needs.discover.result }}
           MACOS_RESULT: ${{ needs.macos.result }}
           LINUX_RESULT: ${{ needs.aros-tools-linux.result }}
+          README_RESULT: ${{ needs.readme.result }}
         run: |
           set -euo pipefail
           if [[ "$DISCOVER_RESULT" != success ]]; then
             echo "::error::formula discovery ended with $DISCOVER_RESULT"
+            exit 1
+          fi
+          if [[ "$README_RESULT" != success ]]; then
+            echo "::error::README verification ended with $README_RESULT"
             exit 1
           fi
           for result in "$MACOS_RESULT" "$LINUX_RESULT"; do
