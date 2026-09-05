@@ -28,9 +28,9 @@ brew install metaneutrons/tap/amiga-gcc
 
 ### bups
 
-**Description:** USB print server for label printers
+**Description:** USB print server for Brother PT and QL label printers
 
-**Version:** 0.1.1
+**Version:** 0.3.3
 
 **Homepage:** https://github.com/metaneutrons/bups
 
