@@ -44,7 +44,7 @@ brew install metaneutrons/tap/bups
 
 **Description:** MCP server bridging serial hardware to LLMs via SQLite-backed buffer
 
-**Version:** 0.1.10
+**Version:** 0.1.11
 
 **Homepage:** https://github.com/metaneutrons/devserial
 
