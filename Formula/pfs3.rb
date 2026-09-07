@@ -5,21 +5,21 @@ class Pfs3 < Formula
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.5/pfs3-0.1.5-x86_64-apple-darwin.tar.gz"
-      sha256 "ce3e749421d34324aba40997a4810e30a4f054126b15a40897bea79c100a462f"
+      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.6/pfs3-0.1.6-x86_64-apple-darwin.tar.gz"
+      sha256 "b972168b3d0336946ef35162caac3d9d7e1ff1eb51c70196957afe7078f9db2c"
     else
-      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.5/pfs3-0.1.5-aarch64-apple-darwin.tar.gz"
-      sha256 "8cfc218235d1f62b443678a653975681a108e9c1ce61988d9fc03cf837570bc9"
+      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.6/pfs3-0.1.6-aarch64-apple-darwin.tar.gz"
+      sha256 "c63413e4c094fce8d81f67ff60f123bbd057eabf95984c2d1e98b5e0e558c46d"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.5/pfs3-0.1.5-x86_64-unknown-linux-musl.tar.gz"
-      sha256 "73a595b55d0b449ef109818255e38e9c9d5bd64f82c65d1e366ea4b7fb20367c"
+      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.6/pfs3-0.1.6-x86_64-unknown-linux-musl.tar.gz"
+      sha256 "8064b81577603609f9d219270d2bcd918104b424c1a74400b9cbfe49331c4ed6"
     else
-      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.5/pfs3-0.1.5-aarch64-unknown-linux-musl.tar.gz"
-      sha256 "40e3517c7f2e60e8b0d12aa2db7cb4adb5048e4c4b2b032573b20b912c898e49"
+      url "https://github.com/metaneutrons/pfs3/releases/download/v0.1.6/pfs3-0.1.6-aarch64-unknown-linux-musl.tar.gz"
+      sha256 "e309d2d15d4b7f1109f5da4610353c9a607677ac45406318176540579c16b2f5"
     end
   end
 
