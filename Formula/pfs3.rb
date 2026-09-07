@@ -1,7 +1,6 @@
 class Pfs3 < Formula
   desc "PFS3 (Amiga Professional File System III) tools"
   homepage "https://github.com/metaneutrons/pfs3"
-  version "0.1.4"
   license "LGPL-3.0-or-later"
 
   on_macos do
