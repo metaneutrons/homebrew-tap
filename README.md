@@ -72,7 +72,7 @@ brew install metaneutrons/tap/knxmonitor
 
 **Description:** PFS3 (Amiga Professional File System III) tools
 
-**Version:** 0.1.3
+**Version:** 0.1.4
 
 **Homepage:** https://github.com/metaneutrons/pfs3
 
