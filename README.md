@@ -54,6 +54,20 @@ brew install metaneutrons/tap/bups
 brew install metaneutrons/tap/devserial
 ```
 
+### freebasic-ng
+
+**Description:** Modern compiler for the FreeBASIC language
+
+**Version:** 1.22.0
+
+**Homepage:** https://github.com/metaneutrons/freebasic-ng
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/freebasic-ng
+```
+
 ### knxmonitor
 
 **Description:** KNX/EIB bus monitoring and debugging tool
