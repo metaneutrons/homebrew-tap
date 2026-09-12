@@ -58,7 +58,7 @@ brew install metaneutrons/tap/devserial
 
 **Description:** Modern compiler for the FreeBASIC language
 
-**Version:** 1.22.2
+**Version:** 1.22.3
 
 **Homepage:** https://github.com/metaneutrons/freebasic-ng
 
