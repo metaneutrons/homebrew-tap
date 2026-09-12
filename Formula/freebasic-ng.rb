@@ -6,11 +6,11 @@ class FreebasicNg < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.22.2/freebasic-ng-1.22.2-darwin-aarch64.tar.xz"
-      sha256 "129a18a32a299519a86d85eefe4447cb924365585b3057f7c9270e02cc418af2"
+      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.22.3/freebasic-ng-1.22.3-darwin-aarch64.tar.xz"
+      sha256 "ddb4fadc376f7ba4613cd6ea025f0b6887f46c90bb9c718bf0831fb125750c00"
     elsif Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.22.2/freebasic-ng-1.22.2-darwin-x86_64.tar.xz"
-      sha256 "42b83758e0dca8045a8465de6f091a972589d65cf8221e157f7745ab6059d2c7"
+      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.22.3/freebasic-ng-1.22.3-darwin-x86_64.tar.xz"
+      sha256 "82aadc871109efe953d840e3506db49a79206373e21cd1e3bf5c05aeeecae697"
     end
   end
 
