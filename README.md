@@ -26,6 +26,20 @@ brew tap metaneutrons/tap
 brew install metaneutrons/tap/amiga-gcc
 ```
 
+### aros-tools
+
+**Description:** Reproducible host-side build and development tools for AROS
+
+**Version:** 0.3.9
+
+**Homepage:** https://github.com/metaneutrons/aros-tools
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/aros-tools
+```
+
 ### bups
 
 **Description:** USB print server for Brother PT and QL label printers
