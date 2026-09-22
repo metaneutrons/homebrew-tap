@@ -31,10 +31,13 @@ jobs:
     outputs:
       formulas: ${{ steps.formulas.outputs.formulas }}
       aros_tools: ${{ steps.formulas.outputs.aros_tools }}
+      macos_matrix: ${{ steps.formulas.outputs.macos_matrix }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+      - name: Test qualification matrix policy
+        run: scripts/test-qualification-matrix.sh
       - name: Resolve the closed formula set
         id: formulas
         shell: bash
@@ -71,6 +74,7 @@ jobs:
           formulas=$(printf '%s\n' "$changed" | sed -n 's#^Formula/\(.*\)\.rb$#\1#p' | sort -u)
           formulas_json=$(printf '%s\n' "$formulas" | jq -Rsc \
             'split("\n") | map(select(length > 0))')
+          macos_matrix=$(scripts/plan-qualification-matrix.sh "$formulas_json")
           aros_tools=false
           if printf '%s\n' "$formulas" | grep -Fxq aros-tools; then
             aros_tools=true
@@ -78,6 +82,7 @@ jobs:
           {
             echo "formulas=$formulas_json"
             echo "aros_tools=$aros_tools"
+            echo "macos_matrix=$macos_matrix"
           } >> "$GITHUB_OUTPUT"
           printf 'Changed formulas: %s\n' "$formulas_json"
 
@@ -90,8 +95,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        formula: ${{ fromJSON(needs.discover.outputs.formulas) }}
-        runner: [macos-15, macos-15-intel]
+        include: ${{ fromJSON(needs.discover.outputs.macos_matrix) }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Set up Homebrew
