@@ -37,7 +37,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Test qualification matrix policy
-        run: scripts/test-qualification-matrix.sh
+        run: |
+          scripts/test-qualification-matrix.sh
+          bash scripts/test-prepare-aros-tools-openssl.sh
       - name: Resolve the closed formula set
         id: formulas
         shell: bash
@@ -109,6 +111,9 @@ jobs:
           HOMEBREW_NO_AUTO_UPDATE: '1'
         run: |
           set -euo pipefail
+          if [[ "$FORMULA" == aros-tools ]]; then
+            bash scripts/prepare-aros-tools-openssl.sh
+          fi
           brew audit --strict "metaneutrons/tap/$FORMULA"
           brew install "metaneutrons/tap/$FORMULA"
           brew test "metaneutrons/tap/$FORMULA"
