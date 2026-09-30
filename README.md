@@ -54,6 +54,20 @@ brew install metaneutrons/tap/aros-tools
 brew install metaneutrons/tap/bups
 ```
 
+### devknx
+
+**Description:** KNX monitor with CLI, TUI, GUI, REST and MCP
+
+**Version:** 0.1.0
+
+**Homepage:** https://github.com/metaneutrons/devknx
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/devknx
+```
+
 ### devserial
 
 **Description:** Serial terminal with SQLite-buffered output and CLI, TUI, GUI, REST and MCP
