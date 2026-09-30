@@ -16,6 +16,10 @@ assert_matrix() {
 
 assert_matrix '["aros-tools"]' \
   '[{"formula":"aros-tools","runner":"macos-15"}]'
+assert_matrix '["devknx"]' \
+  '[{"formula":"devknx","runner":"macos-15"}]'
+assert_matrix '["devknx","devserial"]' \
+  '[{"formula":"devknx","runner":"macos-15"},{"formula":"devserial","runner":"macos-15"},{"formula":"devserial","runner":"macos-15-intel"}]'
 assert_matrix '[]' '[]'
 assert_matrix '["bups"]' \
   '[{"formula":"bups","runner":"macos-15"},{"formula":"bups","runner":"macos-15-intel"}]'
