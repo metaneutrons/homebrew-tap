@@ -58,7 +58,7 @@ brew install metaneutrons/tap/bups
 
 **Description:** Serial terminal with SQLite-buffered output and CLI, TUI, GUI, REST and MCP
 
-**Version:** 0.2.6
+**Version:** 0.2.7
 
 **Homepage:** https://github.com/metaneutrons/devserial
 
