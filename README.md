@@ -72,7 +72,7 @@ brew install metaneutrons/tap/devknx
 
 **Description:** Serial terminal with SQLite-buffered output and CLI, TUI, GUI, REST and MCP
 
-**Version:** 0.2.8
+**Version:** 0.2.9
 
 **Homepage:** https://github.com/metaneutrons/devserial
 
