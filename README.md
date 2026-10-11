@@ -54,6 +54,20 @@ brew install metaneutrons/tap/aros-tools
 brew install metaneutrons/tap/bups
 ```
 
+### cnlman
+
+**Description:** Click'n'Load receiver and decrypter with pyLoad hand-off
+
+**Version:** 0.2.0
+
+**Homepage:** https://github.com/metaneutrons/cnlman
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/cnlman
+```
+
 ### devknx
 
 **Description:** KNX monitor with CLI, TUI, GUI, REST and MCP
