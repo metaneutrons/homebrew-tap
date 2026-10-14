@@ -10,8 +10,8 @@ class Devknx < Formula
   on_macos do
     depends_on arch: :arm64
     on_arm do
-      url "https://github.com/metaneutrons/devknx/releases/download/v0.1.0/devknx-v0.1.0-aarch64-apple-darwin.tar.gz"
-      sha256 "f79af79b0e45196a71b6073fa147a21100df7b1fd0e2480d020dfc4cf4941ee1"
+      url "https://github.com/metaneutrons/devknx/releases/download/v0.3.1/devknx-v0.3.1-aarch64-apple-darwin.tar.gz"
+      sha256 "7d49ce17773ecef9b6c47182861e94dbce14cc0bdf52f61583d75c46c4bb3987"
     end
   end
 
@@ -24,11 +24,11 @@ class Devknx < Formula
     depends_on "mesa"
     depends_on "wayland"
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/devknx/releases/download/v0.1.0/devknx-v0.1.0-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "62b4c5d81a83d2fae4ee80ad6f7271c9a3dd6aabc9ae1c3ea5ad9ca2dc447965"
+      url "https://github.com/metaneutrons/devknx/releases/download/v0.3.1/devknx-v0.3.1-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "e88eb9b953b36e41ac1f66dfe2b0d3e7708eb32000a0fc68cd23c257ae497f08"
     else
-      url "https://github.com/metaneutrons/devknx/releases/download/v0.1.0/devknx-v0.1.0-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "ead1f060e667f01325a8977ec676de8caadc0dcfeecbdf65627ab88bba82fc67"
+      url "https://github.com/metaneutrons/devknx/releases/download/v0.3.1/devknx-v0.3.1-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "0bcba429a4fd498885cc30abe534813eb49c9b178401b92e21756cbc927ec815"
     end
   end
 
