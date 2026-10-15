@@ -124,6 +124,20 @@ brew install metaneutrons/tap/freebasic-ng
 brew install metaneutrons/tap/knxmonitor
 ```
 
+### morphos-cross
+
+**Description:** GCC 15 cross-compiler toolchain for MorphOS (PowerPC)
+
+**Version:** 20260529-r4
+
+**Homepage:** https://github.com/metaneutrons/morphos-cross
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/morphos-cross
+```
+
 ### pfs3
 
 **Description:** PFS3 (Amiga Professional File System III) tools
