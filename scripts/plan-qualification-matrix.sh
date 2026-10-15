@@ -16,12 +16,12 @@ if ! jq -e '
   exit 1
 fi
 
-# aros-tools and devknx deliberately have no Intel macOS release artifact. Every other
-# formula keeps the tap's existing dual-macOS qualification coverage.
+# aros-tools, devknx and morphos-cross deliberately have no Intel macOS release artifact. Every
+# other formula keeps the tap's existing dual-macOS qualification coverage.
 jq -ce '
   map(
     [{formula: ., runner: "macos-15"}]
-    + (if . == "aros-tools" or . == "devknx" then []
+    + (if . == "aros-tools" or . == "devknx" or . == "morphos-cross" then []
        else [{formula: ., runner: "macos-15-intel"}]
        end)
   ) | add // []
