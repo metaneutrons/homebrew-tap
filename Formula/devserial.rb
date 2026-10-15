@@ -8,21 +8,21 @@ class Devserial < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.12/devserial-0.2.12-aarch64-apple-darwin.tar.gz"
-      sha256 "88d37eff133284c1cf230851b9603a81a5a7502c7cf66c1a1ebe956fbacf2b7a"
+      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.13/devserial-0.2.13-aarch64-apple-darwin.tar.gz"
+      sha256 "ec94a1549f4495617f1d2d0ab982220b0f39b0f610c1bce192c00c8eb10bcb01"
     else
-      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.12/devserial-0.2.12-x86_64-apple-darwin.tar.gz"
-      sha256 "e5d6e7387bb112666df7cb2660de5cf19b8a0a4e75d46e71c3ff372fcc84b3a3"
+      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.13/devserial-0.2.13-x86_64-apple-darwin.tar.gz"
+      sha256 "1fce78c50845f50ac3adf7495d5745061baeda51c889bd48a087326f141a82e4"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.12/devserial-0.2.12-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "7772bcb0df250444202efa56d004b874d1490e202623f3c90cbf67844cfe69ea"
+      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.13/devserial-0.2.13-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "762f2bd3ec08cd4f53d08960be080bb83713670e29edd34fa6d123077a1beb18"
     else
-      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.12/devserial-0.2.12-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "66d209a9d395d4506ceedd10c13de4f3ea20b790807d09f8dbeff87189467927"
+      url "https://github.com/metaneutrons/devserial/releases/download/devserial-v0.2.13/devserial-0.2.13-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "e1a617a2639777e513043d2b1a1dae491a1f2bd4e238c02d8c758dcf41a91f18"
     end
   end
 
