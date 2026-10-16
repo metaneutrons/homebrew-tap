@@ -72,7 +72,7 @@ brew install metaneutrons/tap/cnlman
 
 **Description:** KNX monitor with CLI, TUI, GUI, REST and MCP
 
-**Version:** 0.4.1
+**Version:** 0.5.0
 
 **Homepage:** https://github.com/metaneutrons/devknx
 
