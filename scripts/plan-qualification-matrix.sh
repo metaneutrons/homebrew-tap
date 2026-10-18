@@ -16,13 +16,17 @@ if ! jq -e '
   exit 1
 fi
 
-# aros-tools, devknx and morphos-cross deliberately have no Intel macOS release artifact. Every
-# other formula keeps the tap's existing dual-macOS qualification coverage.
+# ami-rust is qualified only on macOS 26 Apple Silicon. aros-tools, devknx and morphos-cross
+# deliberately have no Intel macOS release artifact. Every other formula keeps the tap's
+# existing macOS qualification coverage.
 jq -ce '
   map(
-    [{formula: ., runner: "macos-15"}]
-    + (if . == "aros-tools" or . == "devknx" or . == "morphos-cross" then []
-       else [{formula: ., runner: "macos-15-intel"}]
-       end)
+    if . == "ami-rust" then [{formula: ., runner: "macos-26"}]
+    else
+      [{formula: ., runner: "macos-15"}]
+      + (if . == "aros-tools" or . == "devknx" or . == "morphos-cross" then []
+         else [{formula: ., runner: "macos-15-intel"}]
+         end)
+    end
   ) | add // []
 ' <<<"$formulas"
