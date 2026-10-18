@@ -4,6 +4,8 @@ class Knxmonitor < Formula
   version "0.10.14"
   license "GPL-3.0"
 
+  deprecate! date: "2026-10-18", because: "is archived; devknx replaces it for KNXnet/IP, but not for KNX-USB"
+
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/metaneutrons/KnxMonitor/releases/download/v0.10.14/KnxMonitor-0.10.14-osx-x64.tar.gz"
