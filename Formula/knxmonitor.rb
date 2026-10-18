@@ -1,8 +1,7 @@
 class Knxmonitor < Formula
   desc "KNX/EIB bus monitoring and debugging tool"
   homepage "https://github.com/metaneutrons/KnxMonitor"
-  version "0.10.14"
-  license "GPL-3.0"
+  license "GPL-3.0-or-later"
 
   deprecate! date: "2026-10-18", because: "is archived; devknx replaces it for KNXnet/IP, but not for KNX-USB"
 
