@@ -25,10 +25,14 @@ assert_matrix '["devknx"]' \
 assert_matrix '["devknx","devserial"]' \
   '[{"formula":"devknx","runner":"macos-15"},{"formula":"devserial","runner":"macos-15"},{"formula":"devserial","runner":"macos-15-intel"}]'
 assert_matrix '[]' '[]'
+assert_matrix '["ami-rust"]' \
+  '[{"formula":"ami-rust","runner":"macos-26"}]'
 assert_matrix '["bups"]' \
   '[{"formula":"bups","runner":"macos-15"},{"formula":"bups","runner":"macos-15-intel"}]'
 assert_matrix '["aros-tools","bups"]' \
   '[{"formula":"aros-tools","runner":"macos-15"},{"formula":"bups","runner":"macos-15"},{"formula":"bups","runner":"macos-15-intel"}]'
+assert_matrix '["ami-rust","aros-tools","bups"]' \
+  '[{"formula":"ami-rust","runner":"macos-26"},{"formula":"aros-tools","runner":"macos-15"},{"formula":"bups","runner":"macos-15"},{"formula":"bups","runner":"macos-15-intel"}]'
 
 for invalid in 'null' '["aros-tools","aros-tools"]' '["AROS-tools"]'; do
   if "$planner" "$invalid" >/dev/null 2>&1; then
