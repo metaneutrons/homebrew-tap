@@ -12,6 +12,20 @@ brew tap metaneutrons/tap
 
 ## 🚀 Available Formulas
 
+### ami-rust
+
+**Description:** Native PC x86-64 AROS ABI-v1 SDK
+
+**Version:** 0.1.0
+
+**Homepage:** https://github.com/metaneutrons/ami-rust
+
+**Installation:**
+
+```bash
+brew install metaneutrons/tap/ami-rust
+```
+
 ### amiga-gcc
 
 **Description:** GNU C/C++ cross-compiler toolchain for Amiga (m68k-amigaos)
