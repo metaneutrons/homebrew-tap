@@ -44,7 +44,7 @@ brew install metaneutrons/tap/amiga-gcc
 
 **Description:** Reproducible host-side build and development tools for AROS
 
-**Version:** 0.6.0
+**Version:** 0.6.2
 
 **Homepage:** https://github.com/metaneutrons/aros-tools
 
