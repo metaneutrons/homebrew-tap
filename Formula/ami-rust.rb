@@ -1,54 +1,42 @@
-require "json"
-
 class AmiRust < Formula
-  desc "Native PC x86-64 AROS ABI-v1 SDK"
+  desc "Rust cross-development toolchain for x86-64 AROS"
   homepage "https://github.com/metaneutrons/ami-rust"
-  url "https://github.com/metaneutrons/ami-rust/releases/download/v0.1.0%2Bpackaging.2/ami-rust-0.1.0-packaging.2.tar.xz"
-  version "0.1.0"
-  sha256 "6567abfb4e36a2bf82816f51512343f4d1232c97c866e648fdf68ab4cf7f2448"
-
-  # This composite contains an adapter under MIT OR Apache-2.0 and upstream
-  # SDK components with their own terms, including custom AROS and libgit
-  # licenses. The included original publisher SPDX document preserves those
-  # per-component details; the declaration below describes the composite.
+  url "https://github.com/metaneutrons/ami-rust/releases/download/v0.2.0/ami-rust-toolchain-0.2.0-macos-aarch64.tar.xz"
+  version "0.2.0"
+  revision 1
+  sha256 "eb5fa6077abae6f5aeeb5432c7a9d798744d67f7dc1049efafdf8bc7d7151419"
   license :cannot_represent
-  revision 2
 
-  livecheck do
-    skip "This packaging release requires explicit qualification."
-  end
-
+  depends_on :macos
   depends_on arch: :arm64
-  depends_on "git"
-  depends_on macos: :tahoe
-  depends_on "python@3.14"
 
   def install
-    prefix.install Dir["usr/*"]
-    python = formula_opt_bin("python@3.14")/"python3.14"
-    inreplace bin/"ami-rust", "#!/usr/bin/python3", "#!#{python}"
+    libexec.install "ami-rust"
+    File.symlink(version.to_s, libexec/"ami-rust"/"current")
   end
 
   def caveats
     <<~EOS
-      Prepare the SDK explicitly with `ami-rust prepare --state PATH`.
-      Preparation requires at least 6 GiB of RAM and 24 GiB of free disk.
-      Installation leaves global compiler defaults unchanged.
+      To opt in to the tracking rustup alias, run:
+        rustup toolchain link aros "#{opt_prefix}/libexec/ami-rust/current"
+
+      To opt in to a version-specific rustup alias, run:
+        rustup toolchain link aros-#{version} "#{prefix}/libexec/ami-rust/#{version}"
+
+      The version-specific alias targets this Cellar copy. Homebrew cleanup or
+      formula removal deletes that copy. Copy the SDK to a user-owned path and
+      link rustup there if you need it to outlive this installation.
     EOS
   end
 
   test do
-    assert_equal(
-      "ami-rust 0.1.0 (packaging 2)",
-      shell_output("#{bin}/ami-rust --version").strip,
-    )
-    assert_equal(
-      {
-        "status"          => "VERIFIED_PACKAGE",
-        "sdk_version"     => "0.1.0",
-        "package_version" => "0.1.0-2",
-      },
-      JSON.parse(shell_output("#{bin}/ami-rust verify-package")),
-    )
+    sdk = libexec/"ami-rust/#{version}"
+    current = libexec/"ami-rust/current"
+    assert_predicate current, :symlink?
+    assert_equal version.to_s, File.readlink(current)
+    assert_predicate sdk/"bin/rustc", :executable?
+    assert_predicate sdk/"bin/cargo", :executable?
+    assert_match(/\Arustc \S+/, shell_output("#{sdk}/bin/rustc -V"))
+    assert_match(/\Acargo \S+/, shell_output("#{sdk}/bin/cargo -V"))
   end
 end
