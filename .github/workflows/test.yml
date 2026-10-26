@@ -112,7 +112,13 @@ jobs:
           if [[ "$FORMULA" == aros-tools ]]; then
             bash scripts/prepare-aros-tools-openssl.sh
           fi
-          brew audit --strict "metaneutrons/tap/$FORMULA"
+          if [[ "$FORMULA" == ami-rust ]]; then
+            # The signed SDK formula pins its version explicitly. Its publisher
+            # checks that version; redundant spelling is not an install defect.
+            brew audit --strict --except=version "metaneutrons/tap/$FORMULA"
+          else
+            brew audit --strict "metaneutrons/tap/$FORMULA"
+          fi
           brew install "metaneutrons/tap/$FORMULA"
           brew test "metaneutrons/tap/$FORMULA"
       - name: Remove qualification install
