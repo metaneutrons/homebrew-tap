@@ -14,9 +14,9 @@ brew tap metaneutrons/tap
 
 ### ami-rust
 
-**Description:** Native PC x86-64 AROS ABI-v1 SDK
+**Description:** Rust cross-development toolchain for x86-64 AROS
 
-**Version:** 0.1.0
+**Version:** 0.2.0
 
 **Homepage:** https://github.com/metaneutrons/ami-rust
 
