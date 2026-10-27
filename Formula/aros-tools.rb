@@ -11,18 +11,18 @@ class ArosTools < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.5/aros-tools-v0.6.5-aarch64-apple-darwin.tar.gz"
-      sha256 "1ebca6d94f2ab8bcf1b138c3a62febfcaea19c5023297230b87f9bbc57c7edf3"
+      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.7/aros-tools-v0.6.7-aarch64-apple-darwin.tar.gz"
+      sha256 "5e2c1719f18676e3748ecf0e0d2a952d779c851890e7f382e82b705ec4a9e15f"
     end
   end
 
   on_linux do
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.5/aros-tools-v0.6.5-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "49ea67b6c6cf3516270d56625a6023ed1a4addd896d6a57f6eefe5918c1a8ba7"
+      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.7/aros-tools-v0.6.7-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "f790db781a71cbeb121705fafa33cbc884a5d453be19aec975bf70942585b93c"
     else
-      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.5/aros-tools-v0.6.5-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "c8ea4ec4afdbf98997423884e981988411eeb6eea733e45191f1fda5e87bbc21"
+      url "https://github.com/metaneutrons/aros-tools/releases/download/v0.6.7/aros-tools-v0.6.7-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "80fd10728a942bf81a733758b318876aa3c8e842e0fd84ed9371d061df11478a"
     end
   end
 
