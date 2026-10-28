@@ -12,20 +12,6 @@ brew tap metaneutrons/tap
 
 ## 🚀 Available Formulas
 
-### ami-rust
-
-**Description:** Rust cross-development toolchain for x86-64 AROS
-
-**Version:** 0.3.3
-
-**Homepage:** https://github.com/metaneutrons/ami-rust
-
-**Installation:**
-
-```bash
-brew install metaneutrons/tap/ami-rust
-```
-
 ### amiga-gcc
 
 **Description:** GNU C/C++ cross-compiler toolchain for Amiga (m68k-amigaos)

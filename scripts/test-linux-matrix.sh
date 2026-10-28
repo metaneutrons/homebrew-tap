@@ -16,7 +16,6 @@ assert_matrix() {
 
 assert_matrix '[]' '[]'
 assert_matrix '["bups"]' '[]'
-assert_matrix '["ami-rust"]' '[]'
 assert_matrix '["aros-tools"]' \
   '[{"formula":"aros-tools","runner":"ubuntu-24.04"},{"formula":"aros-tools","runner":"ubuntu-24.04-arm"}]'
 assert_matrix '["morphos-cross"]' \
