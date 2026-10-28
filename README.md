@@ -16,7 +16,7 @@ brew tap metaneutrons/tap
 
 **Description:** Rust cross-development toolchain for x86-64 AROS
 
-**Version:** 0.2.0
+**Version:** 0.3.1
 
 **Homepage:** https://github.com/metaneutrons/ami-rust
 
