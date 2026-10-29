@@ -6,11 +6,11 @@ class FreebasicNg < Formula
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.24.4/freebasic-ng-1.24.4-darwin-aarch64.tar.xz"
-      sha256 "9bc753ecd85f8e3dd3f1e21d3315254e3b98d40f400007ec294bd403f2b83b4d"
+      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.25.2/freebasic-ng-1.25.2-darwin-aarch64.tar.xz"
+      sha256 "03673d65f4e402742be2856d504e292ba6e2a6dc56874931e0fa4abcc777f019"
     elsif Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.24.4/freebasic-ng-1.24.4-darwin-x86_64.tar.xz"
-      sha256 "0cf43a8b7ac477ae3ed514079e008b8e21a2d0a239f6ead7f47dcde45e55b056"
+      url "https://github.com/metaneutrons/freebasic-ng/releases/download/v1.25.2/freebasic-ng-1.25.2-darwin-x86_64.tar.xz"
+      sha256 "d32887a1fa64566f9091ea55e399c914dfddeb598725550b96363ab12cdf2b23"
     end
   end
 
@@ -22,8 +22,20 @@ class FreebasicNg < Formula
     assert_match version.to_s, shell_output("#{bin}/fbc --version")
     source = testpath/"smoke.bas"
     output = testpath/"smoke"
-    source.write 'Print "FreeBASIC-NG package smoke"' + "\n"
+    source.write <<~BASIC
+      Print "FreeBASIC-NG package smoke"
+    BASIC
     system bin/"fbc", source, "-x", output
+    gfx_source = testpath/"gfx-smoke.bas"
+    gfx_output = testpath/"gfx-smoke"
+    gfx_source.write <<~BASIC
+      #include once "fbgfx.bi"
+      Dim w As Integer, h As Integer, d As Integer
+      ScreenInfo w, h, d
+      Print "FreeBASIC-NG graphics smoke"
+    BASIC
+    system bin/"fbc", "-fbgfx", gfx_source, "-x", gfx_output
+    assert_equal "FreeBASIC-NG graphics smoke\n", shell_output(gfx_output)
     assert_equal "FreeBASIC-NG package smoke\n", shell_output(output)
   end
 end
