@@ -5,21 +5,21 @@ class UgosCli < Formula
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.0/ugos-cli-x86_64-apple-darwin.tar.gz"
-      sha256 "3a5d31f4bb8f4ba5d8b6cd70d0e44b71ae14e15e1bed27e2541b242dfdeba492"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.1/ugos-cli-x86_64-apple-darwin.tar.gz"
+      sha256 "6386d28197ee65da76ca86a5d56f5041eb9d2a65e8574745c17665d668d15c08"
     else
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.0/ugos-cli-aarch64-apple-darwin.tar.gz"
-      sha256 "409f155bebc7973ca8d9a3a2243da7ae2f89215620fd25d7c51344bf09ee5fe4"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.1/ugos-cli-aarch64-apple-darwin.tar.gz"
+      sha256 "4cac69b2e6599ab75c1a4bd89ae34b9e379269ce91f61d5420204dc65b925272"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel?
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.0/ugos-cli-x86_64-unknown-linux-gnu.tar.gz"
-      sha256 "33768f9d92ba2d7edb8a5d476e9d7ff6b74d28317c09c35f2098fe5022039968"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.1/ugos-cli-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "24ceb8efef3046a2c4c25a022b54d74d6439681caab4f4ed4193baab1bd4dbb4"
     else
-      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.0/ugos-cli-aarch64-unknown-linux-gnu.tar.gz"
-      sha256 "a353f978290cf7195df49469f17c4e4a131ff93515bc9924a70fca877ccbac28"
+      url "https://github.com/metaneutrons/ugos-cli/releases/download/v0.16.1/ugos-cli-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "1f6c1304cbc15468a03738c0d604facaeaf7e23614b5ae6cce072f803d76fdf9"
     end
   end
 
